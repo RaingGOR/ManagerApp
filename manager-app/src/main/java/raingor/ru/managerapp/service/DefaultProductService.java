@@ -21,4 +21,9 @@ public class DefaultProductService implements ProductsService {
     public List<Product> getAllProducts() {
         return Collections.unmodifiableList(this.repository.findAll());
     }
+
+    @Override
+    public void createProduct(String name, String description) {
+        repository.save(new Product(name, description));
+    }
 }
