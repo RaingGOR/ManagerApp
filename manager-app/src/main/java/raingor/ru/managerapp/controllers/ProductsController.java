@@ -3,6 +3,7 @@ package raingor.ru.managerapp.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +30,8 @@ public class ProductsController {
     @PostMapping("create")
     public String saveNewProduct(CreatedProductDto product) {
         this.productsService.createProduct(product.name(), product.description());
-        return "redirect:/catalogue/    products/list";
+        return "redirect:/catalogue/products/list";
     }
+
 }
 
