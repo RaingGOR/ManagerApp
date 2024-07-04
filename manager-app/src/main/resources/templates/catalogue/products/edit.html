@@ -2,21 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Product edit page [[${product.name}]]</title>
+    <title>Product edit page [[${product.get().name()}]]</title>
 </head>
 <body>
-<h1> Edit page <span data-th-text="${product.getName()}"></span></h1>
-<a data-th-href="@{/catalogue/products/{id}(id=${product.getId()})}">&lAarr; return to Product Page</a>
+<h1> Edit page <span data-th-text="${product.get().name()}"></span></h1>
+<a data-th-href="@{/catalogue/products/{id}(id=${product.get().id()})}">&lAarr; return to Product Page</a>
 
 
-<form method="POST" data-th-action="@{/catalogue/products/{id}(id=${product.getId()})}">
+<form method="POST" data-th-action="@{/catalogue/products/{id}(id=${product.get().id()})}">
     <label>
         Name: <br>
-        <input type="text" name="name" data-th-text="${product.getName()}">
+        <input type="text" name="name" data-th-text="${product.get().id()}">
     </label><br>
     <label>
         Description: <br>
-        <textarea name="description" data-th-text="${product.getDescription()}"></textarea>
+        <textarea name="description" data-th-text="${product.get().description()}"></textarea>
     </label><br>
     <button type="submit">Edit</button>
 </form>

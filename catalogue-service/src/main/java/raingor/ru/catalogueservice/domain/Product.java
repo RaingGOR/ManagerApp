@@ -1,4 +1,4 @@
-package raingor.ru.managerapp.domain;
+package raingor.ru.catalogueservice.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

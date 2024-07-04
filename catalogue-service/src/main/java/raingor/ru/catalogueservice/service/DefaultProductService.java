@@ -1,10 +1,10 @@
-package raingor.ru.managerapp.service;
+package raingor.ru.catalogueservice.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import raingor.ru.managerapp.domain.Product;
-import raingor.ru.managerapp.dto.UpdateProductDTO;
-import raingor.ru.managerapp.repositories.ProductsRepository;
+import raingor.ru.catalogueservice.domain.Product;
+import raingor.ru.catalogueservice.dto.UpdateProductDTO;
+import raingor.ru.catalogueservice.repositories.ProductsRepository;
 
 import java.util.Collections;
 import java.util.List;
@@ -24,8 +24,10 @@ public class DefaultProductService implements ProductsService {
     }
 
     @Override
-    public void createProduct(String name, String description) {
-        repository.save(new Product(name, description));
+    public Product createProduct(String name, String description) {
+        Product product = new Product(name, description);
+        repository.save(product);
+        return product;
     }
 
     @Override
@@ -34,8 +36,8 @@ public class DefaultProductService implements ProductsService {
     }
 
     @Override
-    public Product updateProduct(Product product, UpdateProductDTO updateProductDTO) {
-        Product updatedProduct = repository.findById(product.getId()).orElseThrow(()
+    public Product updateProduct(Long id, UpdateProductDTO updateProductDTO) {
+        Product updatedProduct = repository.findById(id).orElseThrow(()
                 -> new RuntimeException("Product not found"));
         updatedProduct.setName(updateProductDTO.name());
         updatedProduct.setDescription(updateProductDTO.description());

@@ -5,20 +5,21 @@
     <title>Product page [[${product.name}]]</title>
 </head>
 <body>
-<h1 data-th-text="${product.getName()}"></h1>
+<h1 data-th-text="${product.get().name()}"></h1>
 <ul>
-    <li> <strong>ID</strong>:  <span data-th-text="${product.getId()}"></span> </li>
-    <li> <strong>Name</strong>:  <span data-th-text="${product.getName()}"></span> </li>
-    <li> <strong>Description</strong>:  <span data-th-text="${product.getDescription()}"></span> </li>
+    <li> <strong>ID</strong>:  <span data-th-text="${product.get().id()}"></span> </li>
+    <li> <strong>Name</strong>:  <span data-th-text="${product.get().name()}"></span> </li>
+    <li> <strong>Description</strong>:  <span data-th-text="${product.get().description()}"></span> </li>
 </ul>
 
-<a data-th-href="@{/catalogue/products/{id}/edit(id=${product.getId()})}">Edit product</a>
+<a data-th-href="@{/catalogue/products/{id}/edit(id=${product.get().id()})}">Edit product</a>
 <br>
 <a data-th-href="@{/catalogue/products/list}">&lAarr; to Product List</a>
 
 
 <!-- Форма для удаления -->
-<form method="POST" th:action="@{/catalogue/products/{id}(id=${product.id})}" onsubmit="return confirm('Are you sure you want to delete this product?');">
+<form method="POST" th:action="@{/catalogue/products/{id}(id=${product.get().id()})}"
+      onsubmit="return confirm('Are you sure you want to delete this product?');">
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Delete</button>
 </form>

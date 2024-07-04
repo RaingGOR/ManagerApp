@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: manager-app
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username:
+    password:
+    driver-class-name: org.postgresql.Driver
+server:
+  port: 8081

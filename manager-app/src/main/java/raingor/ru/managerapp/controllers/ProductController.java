@@ -3,19 +3,21 @@ package raingor.ru.managerapp.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import raingor.ru.managerapp.domain.Product;
+import raingor.ru.managerapp.client.ProductsRestClient;
+import raingor.ru.managerapp.dto.FullProductDTO;
 import raingor.ru.managerapp.dto.UpdateProductDTO;
-import raingor.ru.managerapp.service.DefaultProductService;
+
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/catalogue/products/{id}")
 public class ProductController {
-    private final DefaultProductService productsService;
+    private final ProductsRestClient restClient;
 
     @ModelAttribute("product")
-    public Product product(@PathVariable("id") long id) {
-        return this.productsService.getProduct(id);
+    public Optional<FullProductDTO> product(@PathVariable("id") long id) {
+        return this.restClient.getProduct(id);
     }
 
     @GetMapping
@@ -29,14 +31,14 @@ public class ProductController {
     }
 
     @PostMapping
-    public String saveProduct(@ModelAttribute("product") Product product, UpdateProductDTO updateProductDTO) {
-        this.productsService.updateProduct(product, updateProductDTO);
+    public String saveProduct(@ModelAttribute("product") FullProductDTO product, UpdateProductDTO updateProductDTO) {
+        this.restClient.updateProduct(product.id(), updateProductDTO.name(),updateProductDTO.description());
         return "redirect:/catalogue/products/list";
     }
 
     @DeleteMapping
     public String deleteProduct(@PathVariable("id") long id) {
-        this.productsService.deleteProduct(id);
+        this.restClient.deleteProduct(id);
         return "redirect:/catalogue/products/list";
     }
 

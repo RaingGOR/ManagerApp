@@ -6,3 +6,7 @@ spring:
     username:
     password:
     driver-class-name: org.postgresql.Driver
+raingor:
+  services:
+    catalogue:
+      uri: http://localhost:8081

@@ -1,8 +1,8 @@
-package raingor.ru.managerapp.repositories;
+package raingor.ru.catalogueservice.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import raingor.ru.managerapp.domain.Product;
+import raingor.ru.catalogueservice.domain.Product;
 
 
 @Repository
