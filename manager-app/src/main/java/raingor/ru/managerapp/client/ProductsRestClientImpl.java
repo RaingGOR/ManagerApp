@@ -2,7 +2,6 @@ package raingor.ru.managerapp.client;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.MediaType;
 import org.springframework.http.ProblemDetail;
 import org.springframework.web.client.HttpClientErrorException;
@@ -39,7 +38,7 @@ public class ProductsRestClientImpl implements ProductsRestClient {
         try {
             return this.restClient
                     .post()
-                    .uri("/catalogue/products")
+                    .uri("/api/products")
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new CreatedProductDto(productName, productDescription))
                     .retrieve()
@@ -54,7 +53,8 @@ public class ProductsRestClientImpl implements ProductsRestClient {
     @Override
     public Optional<FullProductDTO> getProduct(Long productID) {
         try {
-            return Optional.ofNullable(this.restClient.get()
+            return Optional.ofNullable(this.restClient
+                    .get()
                     .uri("/api/products/{id}", productID)
                     .retrieve()
                     .body(FullProductDTO.class)
@@ -69,7 +69,7 @@ public class ProductsRestClientImpl implements ProductsRestClient {
         try {
             Optional.ofNullable(this.restClient
                     .delete()
-                    .uri("/api/products/{id}", productID)
+                    .uri("/api/products/{productID}", productID)
                     .retrieve()
                     .body(FullProductDTO.class)
             );
@@ -83,7 +83,7 @@ public class ProductsRestClientImpl implements ProductsRestClient {
         try {
             this.restClient
                     .patch()
-                    .uri("/catalogue/products/{id}", productID)
+                    .uri("/api/products/{productID}", productID)
                     .contentType(MediaType.APPLICATION_JSON)
                     .body(new UpdateProductDTO(productName, productDescription))
                     .retrieve()

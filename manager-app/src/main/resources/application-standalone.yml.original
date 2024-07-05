@@ -1,11 +1,6 @@
 spring:
   application:
     name: manager-app
-  datasource:
-    url: jdbc:postgresql://localhost:5432/postgres
-    username:
-    password:
-    driver-class-name: org.postgresql.Driver
 raingor:
   services:
     catalogue:
