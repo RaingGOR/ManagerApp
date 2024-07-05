@@ -12,7 +12,7 @@
 <form method="POST" data-th-action="@{/catalogue/products/{id}(id=${product.get().id()})}">
     <label>
         Name: <br>
-        <input type="text" name="name" data-th-text="${product.get().id()}">
+        <input type="text" name="name" data-th-text="${product.get().name()}">
     </label><br>
     <label>
         Description: <br>
