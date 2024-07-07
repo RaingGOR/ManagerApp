@@ -1,7 +1,0 @@
-spring:
-  application:
-    name: manager-app
-raingor:
-  services:
-    catalogue:
-      uri: http://localhost:8081
