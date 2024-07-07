@@ -13,11 +13,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests( auth ->
-                        auth.requestMatchers("/api/**").hasRole("SERVICE"))
+                .authorizeHttpRequests( auth -> auth
+                        .requestMatchers("/api/**").hasRole("SERVICE")
+                )
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(httpSecuritySessionManagementConfigurer -> httpSecuritySessionManagementConfigurer
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .build();
     }
 }

@@ -13,13 +13,11 @@ public class ClientBeans {
     ProductsRestClientImpl restClient(
             @Value("${services.catalogue.uri:http://localhost:8081}") String catalogueBaseUrl,
             @Value("${services.catalogue.username:catalogue_service_user}") String username,
-            @Value("${services.catalogue.password:}") String password
-                                      ) {
-
-        return new ProductsRestClientImpl(RestClient
-                .builder()
+            @Value("${services.catalogue.password:password}") String password) {
+        return new ProductsRestClientImpl(RestClient.builder()
                 .baseUrl(catalogueBaseUrl)
-                .requestInterceptor(new BasicAuthenticationInterceptor(username,password))
+                .requestInterceptor(
+                        new BasicAuthenticationInterceptor(username,password))
                 .build()
         );
     }
