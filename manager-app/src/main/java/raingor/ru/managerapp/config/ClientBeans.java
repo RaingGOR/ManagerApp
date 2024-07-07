@@ -13,7 +13,7 @@ public class ClientBeans {
     ProductsRestClientImpl restClient(
             @Value("${services.catalogue.uri:http://localhost:8081}") String catalogueBaseUrl,
             @Value("${services.catalogue.username:catalogue_service_user}") String username,
-            @Value("${services.catalogue.password:password}") String password
+            @Value("${services.catalogue.password:}") String password
                                       ) {
 
         return new ProductsRestClientImpl(RestClient
